@@ -11,15 +11,12 @@ const fetchProducts = async (
   sortBy: string,
   order: string
 ) => {
-  // Membentuk URL berdasarkan kategori
   let url = `${process.env.NEXT_PUBLIC_BASE_URL}/products`;
 
-  // Jika kategori bukan "All", tambahkan kategori ke URL
   if (category !== "All") {
     url = `${process.env.NEXT_PUBLIC_BASE_URL}/products/category/${category}`;
   }
 
-  // Tambahkan parameter page dan sorting
   const response = await fetch(
     `${url}?page=${page}&sortBy=${sortBy}&order=${order}`,
     {
@@ -66,14 +63,12 @@ export default function Home() {
   const handleSortChange = (sortBy: string, order: string) => {
     setSortBy(sortBy);
     setOrder(order);
-    setCurrentPage(1); // Reset to first page when sorting
+    setCurrentPage(1);
   };
 
   const handleFilterChange = (category: string) => {
-    console.log(category, "<<Category di page");
-
     setCategory(category);
-    setCurrentPage(1); // Reset to first page when filtering
+    setCurrentPage(1);
   };
 
   return (
@@ -81,6 +76,7 @@ export default function Home() {
       <Navbar
         onSortChange={handleSortChange}
         onFilterChange={handleFilterChange}
+        title="home"
       />
       <div className="container mx-auto px-4 py-6">
         <h1 className="text-4xl font-bold text-center mb-8">Products</h1>
@@ -129,7 +125,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Pagination */}
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

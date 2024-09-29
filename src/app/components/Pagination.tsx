@@ -1,4 +1,3 @@
-// components/Pagination.tsx
 import React from "react";
 
 interface PaginationProps {
@@ -18,7 +17,6 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className="mt-6 flex justify-center space-x-2">
-      {/* Show first page */}
       {currentPage > 3 && (
         <>
           <button
@@ -31,13 +29,11 @@ const Pagination: React.FC<PaginationProps> = ({
         </>
       )}
 
-      {/* Show page numbers */}
       {Array.from({ length: totalPages }, (_, i) => {
         const pageNumber = i + 1;
 
-        // Display pages around the current page
         if (pageNumber < currentPage - 1 || pageNumber > currentPage + 1) {
-          return null; // Skip rendering for pages that are too far away
+          return null;
         }
 
         return (
@@ -55,7 +51,6 @@ const Pagination: React.FC<PaginationProps> = ({
         );
       })}
 
-      {/* Show last page */}
       {currentPage < totalPages - 2 && (
         <>
           <span className="px-2">..</span>
